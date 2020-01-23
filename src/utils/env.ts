@@ -1,10 +1,12 @@
+import fs from "fs";
+import path from 'path';
+
 import logger from "./logger";
 import dotenv from "dotenv";
-import fs from "fs";
 
 if (fs.existsSync(".env")) {
     logger.debug("Using .env file to supply config environment variables");
-    dotenv.config({ path: ".env" });
+    dotenv.config({ path: path.join(__dirname, '../../.env') })
 } else {
     logger.debug("Using .env.example file to supply config environment variables");
     dotenv.config({ path: ".env.example" });  // you can delete this after you create your own .env file!

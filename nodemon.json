@@ -1,7 +1,0 @@
-{
-    "env" : {
-        "MONGO_USER" : "henrykim",
-        "MONGO_PASSWORD" : "Turkmenistan2^",
-        "MONGO_DEFAULT_DATABASE" : "jobs"
-    }
-}
