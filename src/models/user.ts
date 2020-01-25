@@ -1,32 +1,57 @@
-import mongoose from "mongoose";
+import {
+  Table,
+  Model,
+  PrimaryKey,
+  Column,
+  CreatedAt,
+  UpdatedAt,
+  DataType,
+  HasMany,
+  AutoIncrement,
+} from 'sequelize-typescript';
+import {Reservation} from './Reservation';
+import {Room} from './Room';
 
-const Schema = mongoose.Schema;
+@Table({
+  underscored: true,
+})
+export class User extends Model<User> {
+  @AutoIncrement
+  @PrimaryKey
+  @Column
+  public id!: number;
 
-const userSchema = new Schema({
-    email: {
-      type: String,
-      required: true
-    },
-    password: {
-      type: String,
-      required: true
-    },
-    firstName: {
-      type: String,
-      required: true
-    },
-    lastName: {
-        type: String,
-        required: true
-      },
-    googleId: {
-        type: String,
-        required: true
-    },
-    deviceToken: {
-        type: String,
-        required: true
-    },
-  }, {timestamps: true});
+  @Column(DataType.STRING)
+  public firstName!: string;
 
-module.exports = mongoose.model('User', userSchema);
+  @Column(DataType.STRING)
+  public lastName!: string;
+
+  @Column(DataType.STRING)
+  public phoneNumber!: string;
+
+  @Column(DataType.STRING)
+  public email!: string;
+
+  @Column(DataType.STRING)
+  public googleId!: string;
+
+  @Column(DataType.STRING)
+  public deviceToken!: string;
+
+  @Column(DataType.BOOLEAN)
+  public isSeller!: boolean;
+
+  @Column(DataType.BOOLEAN)
+  public isSuperHost!: boolean;
+
+  @CreatedAt
+  public readonly createdAt!: Date;
+
+  @UpdatedAt
+  public readonly updatedAt!: Date;
+
+  @HasMany(() => Room, 'userId')
+  public rooms!: Room[];
+
+}
