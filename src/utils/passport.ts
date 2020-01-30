@@ -4,6 +4,7 @@ import GoogleStrategy from 'passport-google-oauth';
 const { CLIENT_ID, CLIENT_SECRET, SERVER_URL } = process.env;
 
 export default function passportSetting(): void {
+
   // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
 //   serialize users into and deserialize users out of the session.  Typically,

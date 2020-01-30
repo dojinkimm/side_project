@@ -1,6 +1,6 @@
-import errorHandler from "errorhandler";
-
-import app from "./app";
+import errorHandler from 'errorhandler';
+import app from './app';
+import './sequelizeConfig';
 
 /**
  * Error Handler. Provides full stack - remove for production

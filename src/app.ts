@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
+import './env';
 import bodyParser from 'body-parser';
-// import { MONGODB_URI } from './utils/env';
 import authRouter from './routes/auth';
 import passport from 'passport';
 
@@ -13,7 +13,6 @@ class App {
     this.middlewares();
     this.passportAuth();
     this.routeMiddlewares();
-    this.mongoSetup();
   }
 
   private middlewares(): void {
@@ -29,15 +28,6 @@ class App {
   private routeMiddlewares = (): void => {
     this.app.use(authRouter);
     passportSetting();
-  }
-
-  private mongoSetup = (): void => {
-    // mongoose.Promise = global.Promise;
-    // mongoose.connect(MONGODB_URI, { useNewUrlParser: true }).catch(err => {
-    //   console.log(
-    //     'MongoDB connection error. Please make sure MongoDB is running. ' + err
-    //   );
-    // });
   }
 }
 
