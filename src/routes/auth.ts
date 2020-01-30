@@ -1,11 +1,13 @@
 import express, { Request, Response } from 'express';
-import { index } from '../controllers/auth';
 import passport from 'passport';
+import {postSignIn} from '../controllers/auth';
+
+const { CLIENT_URL } = process.env;
 
 const router = express.Router();
 
 router.get('/', (request, response) => {
-  response.redirect('http://localhost:3000/');
+  response.redirect(`${CLIENT_URL}/`);
 });
 
 router.get(
@@ -17,10 +19,10 @@ router.get(
 router.get(
   '/login/callback',
   passport.authenticate('google', {
-    failureRedirect: 'http://localhost:3000/login'
+    failureRedirect: `${CLIENT_URL}/login`
   }),
   (req: Request, res: Response) => {
-    res.redirect('http://localhost:3000/');
+    res.redirect(`${CLIENT_URL}/`);
   }
 );
 
