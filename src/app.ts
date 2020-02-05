@@ -6,6 +6,7 @@ import authRouter from './routes/auth';
 import roomRouter from './routes/room';
 import passport from 'passport';
 
+
 import passportSetting from './utils/passport';
 
 const {CLIENT_URL} = process.env;
@@ -26,6 +27,7 @@ class App {
       credentials: true
     }));
     this.app.use(bodyParser.json());
+   
 
   }
 

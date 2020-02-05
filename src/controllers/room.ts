@@ -3,8 +3,15 @@ import { Request, Response, NextFunction } from "express";
 
 export const postCreateRoom = async (req: Request, res: Response, next: NextFunction): Promise<void> =>{
     console.log("createRoom");
-    const request = req.body;
-    console.log(request);
+    const image = req.file;
+    if (!image){
+        console.log("No image");
+    }else{
+        console.log(image.path);
+        const body = req.body;
+        console.log(body);
+        console.log(req);
+    }
     res.send("createRoom received");
 }   
 

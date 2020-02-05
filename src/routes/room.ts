@@ -1,12 +1,13 @@
 import express, { Request, Response } from 'express';
 import passport from 'passport';
+import imageUpload from '../utils/imageUpload';
 import * as roomController from '../controllers/room';
 
 const { CLIENT_URL } = process.env;
 
 const router = express.Router();
 
-router.post('/upload-room', roomController.postCreateRoom);
+router.post('/upload-room', imageUpload('image'), roomController.postCreateRoom);
 
 router.get('/room', roomController.getRoom);
 
