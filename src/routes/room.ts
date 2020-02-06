@@ -7,7 +7,7 @@ const { CLIENT_URL } = process.env;
 
 const router = express.Router();
 
-router.post('/upload-room', imageUpload('image'), roomController.postCreateRoom);
+router.post('/upload-room', imageUpload, roomController.postCreateRoom);
 
 router.get('/room', roomController.getRoom);
 
