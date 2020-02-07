@@ -2,8 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import './env';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import authRouter from './routes/auth';
-import roomRouter from './routes/room';
+import router from './api/routes';
 import passport from 'passport';
 
 
@@ -37,8 +36,7 @@ class App {
   }
 
   private routeMiddlewares = (): void => {
-    this.app.use(authRouter);
-    this.app.use(roomRouter);
+    this.app.use(router);
     passportSetting();
   }
 }

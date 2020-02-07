@@ -24,6 +24,6 @@ const fileFilter = (req: Request, file: any, cb: any) => {
 
 const upload = multer({
     storage: fileStorage, fileFilter: fileFilter
-  }).array('image', 6);
+  }).array('image', 10);
 
 export default upload;
