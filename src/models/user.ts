@@ -22,22 +22,10 @@ export class User extends Model<User> {
   public id!: number;
 
   @Column(DataType.STRING)
-  public firstName!: string;
-
-  @Column(DataType.STRING)
-  public lastName!: string;
-
-  @Column(DataType.STRING)
-  public phoneNumber!: string;
-
-  @Column(DataType.STRING)
-  public email!: string;
+  public displayName!: string;
 
   @Column(DataType.STRING)
   public googleId!: string;
-
-  @Column(DataType.STRING)
-  public deviceToken!: string;
 
   @Column(DataType.BOOLEAN)
   public isSeller!: boolean;

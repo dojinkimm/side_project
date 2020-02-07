@@ -6,25 +6,22 @@ const { CLIENT_URL } = process.env;
 
 const router = express.Router();
 
-router.get('/', (request, response) => {
-  response.redirect(`${CLIENT_URL}/`);
-});
 
 router.get(
-  '/login',
-  passport.authenticate('google', {
-    scope: ['profile']
-  })
-);
-router.get(
-  '/login/callback',
+  '/callback',
   passport.authenticate('google', {
     failureRedirect: `${CLIENT_URL}/login`
-  }),
-  (req: Request, res: Response) => {
+  }),(req,res,next)=>{
     res.redirect(`${CLIENT_URL}/`);
   }
 );
 
+
+router.get(
+  '/',
+  passport.authenticate('google', {
+    scope: ['profile']
+  })
+);
 
 export default router;

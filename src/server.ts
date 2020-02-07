@@ -12,6 +12,7 @@ app.use(errorHandler());
  */
 export const server = sequelize
   .sync()
+  // .sync({force: true})
   .then(res => {
     app.listen(app.get('port'), () => {
       console.log(

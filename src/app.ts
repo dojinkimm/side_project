@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import router from './api/routes';
 import passport from 'passport';
-
+import cookieParser from 'cookie-parser';
 
 import passportSetting from './utils/passport';
 
@@ -26,8 +26,7 @@ class App {
       credentials: true
     }));
     this.app.use(bodyParser.json());
-   
-
+    this.app.use(cookieParser());
   }
 
   private passportAuth = (): void => {
