@@ -30,29 +30,29 @@ export class Room extends Model<Room> {
   @Column(DataType.STRING)
   public city!: string;
 
-  @Column(DataType.NUMBER)
+  @Column(DataType.INTEGER)
   public price!: number;
 
-  @Column(DataType.NUMBER)
+  @Column(DataType.INTEGER)
   public capacity!: number;
 
-  @Column(DataType.NUMBER)
+  @Column(DataType.INTEGER)
   public bedroomNumber!: number;
 
-  @Column(DataType.NUMBER)
+  @Column(DataType.INTEGER)
   public bedNumber!: number;
 
-  @Column(DataType.NUMBER)
+  @Column(DataType.INTEGER)
   public bathNumber!: number;
 
-  @Column(DataType.DECIMAL(10, 8))
-  public latitude!: number;
+  @Column(DataType.FLOAT)
+  public latitude?: number;
 
-  @Column(DataType.DECIMAL(11, 8))
-  public longitude!: number;
+  @Column(DataType.FLOAT)
+  public longitude?: number;
 
   @Column(DataType.STRING)
-  public imageURLs!: string[];
+  public imageUrls!: string[];
 
   @ForeignKey(() => User)
   @Column(DataType.INTEGER)
