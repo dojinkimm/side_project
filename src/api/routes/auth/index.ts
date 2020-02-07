@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import passport from 'passport';
-import {postSignIn} from './controllers/auth';
+import * as authController from './controllers';
 
 const { CLIENT_URL } = process.env;
 
