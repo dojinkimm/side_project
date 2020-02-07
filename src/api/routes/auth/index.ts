@@ -6,20 +6,19 @@ const { CLIENT_URL } = process.env;
 
 const router = express.Router();
 
-
 router.get(
   '/callback',
   passport.authenticate('google', {
+    session: false,
     failureRedirect: `${CLIENT_URL}/login`
-  }),(req,res,next)=>{
-    res.redirect(`${CLIENT_URL}/`);
-  }
+  }),
+  authController.authLogin
 );
-
 
 router.get(
   '/',
   passport.authenticate('google', {
+    session: false,
     scope: ['profile']
   })
 );

@@ -3,11 +3,9 @@ import jwt from 'jsonwebtoken';
 const { JWT_SECURE } = process.env;
 
 export function generateJWT(
-  exist: boolean,
   id: number,
-  googleId: string
 ): Promise<jwt.Secret> {
-  const payload = {exist, id, googleId};
+  const payload = {id};
   return new Promise(() => {
     jwt.sign(payload, JWT_SECURE, { expiresIn: 1000 * 24 * 60 * 60 });
   });
