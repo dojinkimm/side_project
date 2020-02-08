@@ -27,9 +27,6 @@ export class User extends Model<User> {
   @Column(DataType.STRING)
   public googleId!: string;
 
-  @Column(DataType.STRING)
-  public token?: string;
-
   @Column(DataType.BOOLEAN)
   public isSeller!: boolean;
 

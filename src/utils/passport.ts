@@ -1,8 +1,23 @@
 import passport from 'passport';
 import GoogleStrategy from 'passport-google-oauth';
 import { getUserByGoogleId, createUser } from '../services/user';
+import { generateJWT } from '../utils/jwt';
 
 const { CLIENT_ID, CLIENT_SECRET, SERVER_URL } = process.env;
+
+
+export const makeUserObj = async (
+  id: number,
+  googleId: string,
+) => {
+  const token = await generateJWT(id, googleId);
+  return {
+    id,
+    googleId,
+    token,
+  };
+};
+
 
 export default function passportSetting(): void {
   // Passport session setup.
@@ -40,18 +55,19 @@ export default function passportSetting(): void {
 
         try {
           const user = await getUserByGoogleId(googleId);
+
           // User exists in DB
           if (user) {
-            // const userObject = await makeUserObject(user.id, googleId);
-            // done(null, userObject, {message: 'User exists, Success'});
-            done(null, user, {message: 'User exists, Login'});
-          
+            const userObj = await makeUserObj(user.id, googleId);
+            // done(null, user, {message: 'User exists, Login'});
+            done(null, userObj, {message: 'User exists, Login'});
+
           // User not exists in DB -> insert DB
           } else {
             const newUser = await createUser(googleId, displayName);
-            // const userObject = await makeUserObject(newUser.id, googleId);
-            // done(null, userObject, {message: 'User not exists, Sign up'});
-            done(null, newUser, {message: 'User not exists, Sign up'});
+            const userObj = await makeUserObj(newUser.id, googleId);
+            // done(null, newUser, {message: 'User not exists, Sign up'});
+            done(null, userObj, {message: 'User not exists, Sign up'});
           }
         } catch (e) {
           console.log(e);

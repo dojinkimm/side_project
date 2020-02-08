@@ -1,5 +1,4 @@
 import { User } from '../../models';
-import { WhereOptions } from 'sequelize';
 
 // User가 로그인을 할 때 사용되는 Service
 export default async (
