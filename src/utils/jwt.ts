@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import { reject, resolve } from 'bluebird';
 
 const { JWT_SECURE } = process.env;
 
@@ -18,9 +17,9 @@ export function generateJWT(id: number, googleId: string): Promise<jwt.Secret> {
   });
 }
 
-export function verifyJWT(token: string): Promise<jwt.Secret> {
-  return new Promise(() => {
-    jwt.verify(token, JWT_SECURE || '', (err, decoded) => {
+export function verifyJWT(token: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, JWT_SECURE || '', (err: jwt.VerifyErrors, decoded: any) => {
       if(err) reject(err);
       resolve(decoded);
     });

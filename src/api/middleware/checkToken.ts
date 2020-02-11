@@ -1,30 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyJWT } from '../../utils/jwt';
 
-export default (req: Request, res: Response, next: NextFunction) => {
-  const authHeader = req.get('Authorization');
-  if (!authHeader) {
-    // req.isAuth = false;
-    return next();
-  }
-
-  const token = authHeader.split(' ')[1];
-
-  let decodedToken;
+export default async (req: Request, res: Response, next: NextFunction) => {
+  const token = req.cookies.UID;
   try {
-    decodedToken = verifyJWT(token);
-  } catch (err) {
-    // req.isAuth = false;
-    return next();
+    if (!token) throw new Error('No Token');
+
+    const { id } = await verifyJWT(token);
+    req.user = { id: +id };
+    next();
+  } catch (e) {
+    console.log(e);
   }
-
-  if (!decodedToken) {
-    // req.isAuth = false;
-    return next();
-  }
-
-  // req.token = token;
-  // req.isAuth = true;
-  next();
-
 };
