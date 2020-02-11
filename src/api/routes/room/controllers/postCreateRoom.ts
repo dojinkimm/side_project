@@ -30,27 +30,31 @@ export const postCreateRoom = async (
     imagePaths.push(file.path);
   });
 
-  const userId = req.user.id;
-  
-  createRoom({
-    title,
-    capacity,
-    bedroomNumber,
-    bedNumber,
-    bathNumber,
-    price,
-    checkin,
-    checkout,
-    houseType,
-    convenience,
-    country,
-    city,
-    address,
-    street1,
-    street2,
-    imagePaths,
-    userId
-  });
+  try {
+    const userId = req.user.id;
 
-  return res.redirect(`${CLIENT_URL}/`);
+    await createRoom({
+      title,
+      capacity,
+      bedroomNumber,
+      bedNumber,
+      bathNumber,
+      price,
+      checkin,
+      checkout,
+      houseType,
+      convenience,
+      country,
+      city,
+      address,
+      street1,
+      street2,
+      imagePaths,
+      userId
+    });
+    res.status(201);
+  } catch (e) {
+    console.log(e);
+    next();
+  }
 };
