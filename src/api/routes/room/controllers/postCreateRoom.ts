@@ -26,8 +26,11 @@ export const postCreateRoom = async (
     street2
   } = req.body;
   const imagePaths: string[] = [];
-  Array.prototype.forEach.call(req.files, function(file: any) {
-    imagePaths.push(file.path);
+  const mainImg = req.files[0].path;
+
+  Array.prototype.forEach.call(req.files, function(file: any, idx: number) {
+    if (idx !== 0)
+      imagePaths.push(file.path);
   });
 
   try {
@@ -50,6 +53,7 @@ export const postCreateRoom = async (
       street1,
       street2,
       imagePaths,
+      mainImg,
       userId
     });
     res.status(201);

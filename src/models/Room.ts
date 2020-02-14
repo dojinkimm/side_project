@@ -53,27 +53,6 @@ export class Room extends Model<Room> {
     ac: boolean;
   };
 
-  // @Column(DataType.BOOLEAN)
-  // public wifi!: boolean;
-
-  // @Column(DataType.BOOLEAN)
-  // public parking!: boolean;
-
-  // @Column(DataType.BOOLEAN)
-  // public kitchen!: boolean;
-
-  // @Column(DataType.BOOLEAN)
-  // public breakfast!: boolean;
-
-  // @Column(DataType.BOOLEAN)
-  // public tv!: boolean;
-
-  // @Column(DataType.BOOLEAN)
-  // public laundry!: boolean;
-
-  // @Column(DataType.BOOLEAN)
-  // public ac!: boolean;
-
   @Column(DataType.STRING)
   public address!: string;
 
@@ -87,13 +66,19 @@ export class Room extends Model<Room> {
   public street2!: string;
 
   @Column(DataType.FLOAT)
-  public latitude?: number;
+  public rate?: number;
 
-  @Column(DataType.FLOAT)
-  public longitude?: number;
+  // @Column(DataType.FLOAT)
+  // public latitude?: number;
+
+  // @Column(DataType.FLOAT)
+  // public longitude?: number;
 
   @Column(DataType.ARRAY(DataType.STRING))
   public imagePaths!: string[];
+
+  @Column(DataType.STRING)
+  public mainImg!: string;
 
   @ForeignKey(() => User)
   @Column(DataType.INTEGER)

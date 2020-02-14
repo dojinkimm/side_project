@@ -25,6 +25,7 @@ interface Props {
   street1: string;
   street2: string;
   imagePaths: string[];
+  mainImg: string;
   userId: number;
 }
 
